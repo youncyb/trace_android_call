@@ -103,7 +103,7 @@ Java_com_example_myapplication_MainActivity_testFromJNI(
 
 追宗结果：
 
-![image-20250528181341406](./README.assets/image-20250528181341406.png)
+![image-20250604150227903](./README.assets/image-20250604150227903.png)
 
 ## 2. 使用方法
 

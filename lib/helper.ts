@@ -11,7 +11,6 @@ export function hook_ArtMethod_Invoke(filter: string) {
 			break;
 		}
 	}
-
 	if (addr_artmethod_invoke) {
 		Interceptor.attach(addr_artmethod_invoke, {
 			onEnter: function (args) {
@@ -159,7 +158,7 @@ export function hook_InvokeWithArgArray(filter: string) {
 			onEnter: function (args) {
 				const artmethod_ptr = args[1];
 				const tid = args[0].readPointer().add(0x10).readU32()
-				const arg_arrays = args[2];
+				const arg_arrays = args[2].add(Process.pointerSize + 8).readPointer();
 				let method_name = readStdString(pretty_method_func(artmethod_ptr, 1));
 				if (method_name?.includes(filter)) {
           const { shorty, args_size, long_shorty } = parse_args_from_method_name(method_name);

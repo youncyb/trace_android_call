@@ -302,7 +302,7 @@ function hook_InvokeWithArgArray(filter) {
             onEnter: function (args) {
                 const artmethod_ptr = args[1];
                 const tid = args[0].readPointer().add(0x10).readU32();
-                const arg_arrays = args[2];
+                const arg_arrays = args[2].add(Process.pointerSize + 8).readPointer();
                 let method_name = (0, utils_1.readStdString)((0, utils_1.pretty_method_func)(artmethod_ptr, 1));
                 if (method_name?.includes(filter)) {
                     const { shorty, args_size, long_shorty } = (0, utils_1.parse_args_from_method_name)(method_name);
