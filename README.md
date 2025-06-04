@@ -108,6 +108,21 @@ Java_com_example_myapplication_MainActivity_testFromJNI(
 ## 2. 使用方法
 
 1. 基于Android10 + Arm64位的app
+
 2. 确保[`use_fast_path = false`](https://xrefandroid.com/android-10.0.0_r47/xref/art/runtime/interpreter/interpreter_common.h#232)
-3. `frida -U -l index.js -f com.example.myapplication`
+
+3. 修改entry.ts文件中的包名过滤器：
+
+   ```ts
+   function main() {
+       const filter = "com.example";   // modify it
+       // hook_ArtMethod_Invoke(filter);
+       
+       hook_ArtInterpreterToInterpreterBridge(filter);
+       hook_ArtInterpreterToCompiledCodeBridge(filter);
+       hook_InvokeWithArgArray(filter);
+   }
+   ```
+
+4. `frida -U -l index.js -f com.example.myapplication`
 
