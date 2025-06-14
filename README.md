@@ -126,3 +126,7 @@ Java_com_example_myapplication_MainActivity_testFromJNI(
 
 4. `frida -U -l index.js -f com.example.myapplication`
 
+## 3. 原理
+
+1. [追踪Android方法调用1](https://xz.aliyun.com/news/18128)
+2. [追踪Android方法调用2](https://xz.aliyun.com/news/18130)
